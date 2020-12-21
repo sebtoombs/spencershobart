@@ -1,0 +1,142 @@
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+@tailwind base;
+
+/** Import variables */
+@import "common/variables";
+
+/** Import everything from autoload */
+@import "./autoload/**/*";
+
+/**
+ * Import npm dependencies
+ *
+ * Prefix your imports with `~` to grab from node_modules/
+ * @see https://github.com/webpack-contrib/sass-loader#imports
+ */
+// @import "~some-node-module";
+
+/**
+ * This injects any component classes registered by Tailwind plugins.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/components";
+ */
+@tailwind components;
+
+/** Import theme styles */
+@import "common/global";
+@import "components/copy";
+@import "components/forms";
+@import "components/wp-classes";
+@import "components/alerts";
+@import "components/mobile-navigation";
+@import "layouts/header";
+@import "layouts/sidebar";
+@import "layouts/footer";
+@import "layouts/pages";
+@import "layouts/posts";
+@import "layouts/tinymce";
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/utilities";
+ */
+@tailwind utilities;
+
+@layer utilities {
+  @responsive {
+    .aspect-ratio {
+      @apply relative;
+      &:before {
+        @apply h-0 block;
+        content: "";
+        padding-bottom: var(--aspect-ratio);
+      }
+      &>* {
+        @apply overflow-hidden absolute flex items-center w-full h-full;
+        inset: 0px;
+      }
+      img {
+        object-fit: cover;
+      }
+      &>picture>img{
+        @apply w-full h-full;
+      }
+    }
+
+    .btn {
+      @apply px-3 py-1 inline-flex items-center justify-center border-solid border transition duration-200 cursor-pointer;
+      &:focus {
+        @apply outline-none shadow-outline;
+      }
+
+      &.btn-link {
+        @apply border-transparent bg-transparent px-0 py-0 underline;
+      }
+    }
+    .btn-lg {
+      @apply px-5 py-2 text-lg;
+    }
+    
+    .btn-gray {
+      @apply bg-gray-500 text-white border-gray-500;
+      &:hover {
+        @apply bg-gray-600 border-gray-600;
+      }
+
+      &.btn-outline {
+        @apply bg-transparent border-gray-500 text-gray-500;
+        &:hover {
+          @apply bg-gray-600 bg-opacity-25 border-gray-600;
+        }
+      }
+    }
+    .btn-white {
+      @apply bg-white text-gray-500 border-white;
+      &:hover {
+        @apply bg-gray-50 border-gray-50;
+      }
+
+      &.btn-outline {
+        @apply bg-transparent border-white text-white;
+        &:hover {
+          @apply bg-gray-50 bg-opacity-25 border-gray-50;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "utilities/background-patterns";
+ * @import "utilities/skew-transforms";
+ */
+
+ [x-cloak] {
+   display: none;
+ }

@@ -1,0 +1,25 @@
+.nav-primary {
+  .nav {
+    @apply flex items-center;
+
+    li {
+      @apply mx-3;
+      &:first-child{
+        @apply ml-0;
+      }
+      &:last-child {
+        @apply mr-0;
+      }
+      a {
+        @apply text-white;
+        @screen lg {
+          @apply text-lg;
+        }
+      }
+
+      @screen xl {
+        @apply mx-5;
+      }
+    }
+  }
+}

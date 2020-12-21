@@ -1,0 +1,7 @@
+.alert {
+  @apply bg-gray-50 text-black px-4 py-3 border border-solid border-gray-100;
+
+  &.alert-warning {
+    @apply bg-yellow-100  border-yellow-300;
+  }
+}

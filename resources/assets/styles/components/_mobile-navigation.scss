@@ -1,0 +1,17 @@
+#mobile-navigation {
+  z-index: 9999;
+}
+
+.nav-mobile {
+  .nav {
+    .menu-item {
+      @apply my-3 text-lg;
+      &:first-child {
+        @apply mt-0;
+      }
+      &:last-child {
+        @apply mb-0;
+      }
+    }
+  }
+}
